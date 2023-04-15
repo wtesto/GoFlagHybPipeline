@@ -61,4 +61,20 @@ Here's how to do it:
 Check your new **target.fa** to make sure it looks good, and then move on to the next step. 
 
 
+### Step 2: Trim and quality check your raw reads using **2_trimmer.sh**
+
+Now that you have your reference file built, you need to clean up your raw read files before starting the HybPiper workflow. **2_trimmer.sh** does this using **Trimmomatic** (check the *Dependencies* section above). This script is very basic -- it runs Trimmomatic, organizes the outfiles, and then unzips the cleaned read files so they can be processed further. 
+
+**Before running this step**, please check the trimmomatic settings by opening **2_trimmer.sh** and ensure that the appropriate parameters are selected. 
+
+Once you run **2_trimmer.sh**, you will end up with three new directories: 
+
+- */unpairedReads* will contain the reads that Trimmomatic was unable to pair for each sample
+
+- */cleanReads* will contain the cleaned, trimmed reads. 
+
+- */rawReads* will contain the unprocessed, raw reads. 
+
+The contents of */cleanReads* will be unzipped fastq files, which will be ready for processing in HybPiper. 
+
 
