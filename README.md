@@ -60,6 +60,8 @@ Here's how to do it:
 
 Check your new **target.fa** to make sure it looks good, and then move on to the next step. 
 
+(If you are not familiar with shell scripts, you can run this script (and the rest of them) in the terminal with the command *bash [name of script]* - in this case, it would be *bash 1_extractSequences.sh*. There are lots of other ways to run them of course, but that is the most basic.)
+
 
 ### Step 2: Trim and quality check your raw reads using **2_trimmer.sh**
 
@@ -77,4 +79,36 @@ Once you run **2_trimmer.sh**, you will end up with three new directories:
 
 The contents of */cleanReads* will be unzipped fastq files, which will be ready for processing in HybPiper. 
 
+
+### Step 3: Rename clean read files with **3_renamer.sh**
+
+**3_renamer.sh** takes the unwieldy, long names of the fastq files in the */cleanReads* directory and shortens them to just retain the plate number, well number, and sequencing direction (forward or reverse). It also creates a new subdirectory called */backupReads* with --you guessed it-- backups of the cleaned fastq files. Finally, the script creates a list of the all of the samples in */cleanReads* and places this file (called *namelist.txt*) in the main working directory. HybPiper will use *namelist.txt* to identify the samples to process in the next step. 
+
+
+### Step 4: Run HybPiper with **4_runHybPiper.sh**
+
+Prior to running this script, you will need to activate HybPiper (assuming you installed it with conda) with *conda activate hybpiper*. 
+
+**4_runHybPiper.sh** does exactly what it sounds like -- it runs HybPiper. **Note**: the *intronerate* option is currently on in this script. 
+
+**Please consult the** [HybPiper Wiki](https://github.com/mossmatters/HybPiper/wiki/) to see the various run options and compare these to the options currently specified in **4_runHybPiper.sh**. You may want to adjust these settings to suit your needs. 
+
+Note, this script will run in the interactive mode, meaning that you cannot close the terminal without interrupting the run. To avoid this, you can place these commands inside a SLURM script (if you have access to a SLURM scheduler). Alternatively, there are several options for either detaching the session or otherwise avoiding interruption of the run if your terminal session is interrupted. One option is to use the **nohup** (no hangup) command, which you can do like this: 
+
+*nohup bash 4_runHybPiper.sh &*
+
+Depending on the size of your data set and computational resources, this step should take a long time -- hours or even days. Once finished, you will end up with multi-fasta files for each locus. Remember that these are unaligned and they will need to be aligned prior to tree building. 
+
+
+### Step 5: Cleaning up missing loci with **5_deleteBadSeqs.sh**
+
+Locus recovery is almost always quite variable, with at least a few loci failing to be assembled for many or even all of your samples. **5_deleteBadSeqs** identifies loci with fewer than a set threshold number of sequences and deletes these fasta files. It then renumbers the fasta files for the remaining loci, which is helpful for downstream tree building analyses, especially if you use array jobs. 
+
+*Important*: because the loci will be renumbered after this step, you may want to refer to the outfiles of the *hybpiper stats* commands run in **4_runHybPiper.sh** if you want to evaluate specific loci. 
+
+The script is currently set to delete loci that contain sequences from fewer than 25% of the samples. To change the threshold, open **5_deleteBadSeqs.sh** in a text editor and modify the fraction assigned to the variable *cutoff* on line 3. 
+
+After running this step, the */FASTAs* directory will contain only loci that pass this filter. This is not the only quality control you should use, though -- you should also review the putative paralogous loci identified in *paralog_report.tsv*. You may want to do additional checks, as well. 
+
+After you are satisfied with the quality of your multi-FASTA files, you can continue with downstream analyses. Good luck! 
 
