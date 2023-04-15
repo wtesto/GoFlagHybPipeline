@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -i cutoff=0.25
+cutoff=1/4
 
 num_seqs=$(wc -l < namelist.txt)
 
