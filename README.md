@@ -38,8 +38,11 @@ Many times, we only want to process some of the many samples for which we have d
 Briefly: 
 
 1. Make a text file named **sample_list.txt** with the plate and well number of your files, with one sample per line. 
+
 2. Copy **selectSamples.sh** and **sample_list.txt** to the directory where your raw reads files are. 
+
 3. Run **selectSamples.sh**. The subset of files that you want will now be in a new directory called */selected_samples*.
+
 4. Copy the files in */selected_samples* to your working directory and you are ready to go! 
 
 
@@ -49,5 +52,13 @@ The assembly step of HybPiper requires a target sequence file in order to be abl
 
 Here's how to do it: 
 
-1. First, check the list of references in **refSeqs.txt** to find the best fit(s) for your 
+1. First, check the list of references in **refSeqs.txt** to find the best options for your dataset. Keep in mind that the number of loci represented in the refetence is indicated in the first column. 
+
+2. Using a text editor, open **1_extractSequences.sh** and type in the taxon name of your reference (or an unambiguous portion of the name) in the indicated space following the first *awk* command on line 9. In the provided example, this is currently *Thelypteris*, which is an unambiguous part of the name of one of the references, *Thelypteris acuminata*. If you wish you add second reference, do the same on line 11 (you can copy and paste line 11 if you wish to have more than two refertences!). *If you only want to use one reference,* **comment out line 11.**
+
+3. Once you have specified your desired references, save **1_extractSequences.sh** and then run it. You should create a new **target.fa** 
+
+Check your new **target.fa** to make sure it looks good, and then move on to the next step. 
+
+
 
