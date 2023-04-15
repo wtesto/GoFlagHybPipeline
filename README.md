@@ -8,7 +8,10 @@ This is a collection of simple shell scripts that I use to process target-captur
 
 The GoFlag probe set is a universal target-capture probe set that is designed for generating ca. 400 nuclear low copy nuclear loci from bryophytes, lycophytes, ferns, and gymnosperms. If you want to learn more about the GoFlag probe set, please see [our paper](https://static1.squarespace.com/static/60f01ce3590ad927352e44af/t/60f55846860d895b483fc75f/1626691669161/2021Breinholt.pdf) describing it in Applications in Plant Sciences. And please cite that paper if you use those data or the probe set - thanks! 
 
-Please use these scripts with caution and please let me know if you encounter any unexpected behavior -- I am glad to troubleshoot them and appreciate any feedback. 
+Please use these scripts with caution and please let me know if you encounter any unexpected behavior -- I am glad to troubleshoot them and appreciate any feedback. A DOI for this repository is provided through Zenodo: 
+
+[![DOI](https://zenodo.org/badge/628128958.svg)](https://zenodo.org/badge/latestdoi/628128958)
+
 
 ## A quick note on dependencies
 
