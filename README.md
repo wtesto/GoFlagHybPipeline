@@ -10,10 +10,18 @@ Please use these scripts with caution and please let me know if you encounter an
 
 ## Workflow overview
 
-This workflow is very simple and involves five shell scripts that preprocess GoFlag data for a HybPiper run, run HybPiper, and then process the output a HybPiper run for downstream analyses. The numbered prefixes in the script names indicate the order that they are to be run in. 
+This workflow is very simple and involves five shell scripts that preprocess GoFlag data for a HybPiper run, run HybPiper, and then process the output a HybPiper run for downstream analyses. The numbered prefixes in the script names indicate the order that they are to be run in. The workflow is designed to **run in a single directory** with all of the files in this repository, plus your zipped .fastq files. 
 
 Additional files include:
 
 - **adapters.fasta**: this is fasta file containing the Illumina i5 and i7 adapter sequences.
 
--**combinedTarget.fasta**: this is a fasta file containing sequence data for all 251 GoFlag references. For a complete list of the references and the number of loci covered by each, see **refSeqs.txt**. 
+- **combinedTarget.fasta**: this is a fasta file containing sequence data for all 251 GoFlag references. For a complete list of the references and the number of loci covered by each, see **refSeqs.txt**. Custom target files can be generated from this file using the **1_extractSequences.sh** script.
+
+- **refSeqs.txt**: this is a text file listing all 251 of the GoFlag references, which were obtained from 1KP transcriptomes and whole genome sequences. 
+
+- **selectSamples.sh** this is an additional shell script that can be used at the start of the workflow to select raw reads files for a subset of samples and place them in a separate directory so they can be easily moved to the working directory to be analyzed. 
+
+- **target.fa** this is an example custom target file generated from **combinedTarget.fasta** using the **1_extractSequences.sh** script. 
+
+
