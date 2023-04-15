@@ -60,7 +60,7 @@ Here's how to do it:
 
 Check your new **target.fa** to make sure it looks good, and then move on to the next step. 
 
-(If you are not familiar with shell scripts, you can run this script (and the rest of them) in the terminal with the command *bash [name of script]* - in this case, it would be *bash 1_extractSequences.sh*. There are lots of other ways to run them of course, but that is the most basic.)
+(If you are not familiar with shell scripts, you can run this script (and the rest of them) in the terminal with the command *bash [name of script]* - in this case, it would be *bash 1_extractSequences.sh* . There are lots of other ways to run them of course, but that is the most basic.)
 
 
 ### Step 2: Trim and quality check your raw reads using **2_trimmer.sh**
