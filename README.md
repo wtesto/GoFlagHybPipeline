@@ -1,5 +1,7 @@
 # GoFlagHybPipeline
+
 Scripts for processing sequences from the GoFlag project in HybPiper
+
 
 ## A few comments
 This is a collection of simple shell scripts that I use to process target-capture sequence data generated from the GoFlag (Geneology of Flagellate Plants) project and similar data sets using HybPiper. This workflow has worked for me on Mac OS and a variety of Linux distributions, but your mileage may vary! This assumes a basic understanding of bash scripting and command line experience and familiarity with the HybPiper workflow. Please consult Matt Johnson's excellent [HybPiper Github Repository](https://github.com/mossmatters/HybPiper) to learn more about how HybPiper works -- you should be able to easily modify these scripts as needed for a variety of run types. 
