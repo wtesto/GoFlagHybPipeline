@@ -1,8 +1,10 @@
 #!/bin/bash
 
+declare -i cutoff=0.25
+
 num_seqs=$(wc -l < namelist.txt)
 
-min_num_seqs=$((( $num_seqs)/4))
+min_num_seqs=$((( $num_seqs)*$cutoff))
 
 col_count=$(head -n1 seq_lengths.tsv | grep -o $'\t' | wc -l)
 
