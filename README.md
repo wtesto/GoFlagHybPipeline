@@ -31,3 +31,23 @@ Additional files include:
 - **target.fa** this is an example custom target file generated from **combinedTarget.fasta** using the **1_extractSequences.sh** script. 
 
 
+### (optional step): Move subset of samples with **selectSamples.sh**
+
+Many times, we only want to process some of the many samples for which we have data stored in some directory. To help speed up the process of finding the files I want and copying them over, I wrote **selectSamples.sh**, which is a very simple shell script that I use to subset samples. Please read the comment lines at the start of the script for instructions on how to use it. Of course, you can copy the file that you want to process to the working directory other ways! 
+
+Briefly: 
+
+1. Make a text file named **sample_list.txt** with the plate and well number of your files, with one sample per line. 
+2. Copy **selectSamples.sh** and **sample_list.txt** to the directory where your raw reads files are. 
+3. Run **selectSamples.sh**. The subset of files that you want will now be in a new directory called */selected_samples*.
+4. Copy the files in */selected_samples* to your working directory and you are ready to go! 
+
+
+### Step 1: Generate a custom reference file using **1_extractSequences.sh**
+
+The assembly step of HybPiper requires a target sequence file in order to be able to map the reads. This must be a fasta file and it has to be in a specific format that enables HybPiper to identify which locus is which. **combinedTarget.fasta** contains sequences from all 251 GoFlag references, but you will want to select one or perhaps a few of these to build a custom target file for your analysis. To do so, you need to identify which references you want in your custom target file and then use **1_extractSequences.sh** to build the file from **combinedTarget.fasta. 
+
+Here's how to do it: 
+
+1. First, check the list of references in **refSeqs.txt** to find the best fit(s) for your 
+
